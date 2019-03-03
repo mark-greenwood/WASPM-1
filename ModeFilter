@@ -1,0 +1,14 @@
+// Simple low pass filter. filterValue determines smoothness. 0 = off; 0.9999 = max 
+int smooth(int sensor_reading, float filterValue, float smoothedValue){
+  
+  // Checking validity of filterValue; if beyond range, set to max/min value if out of range.
+  if (filterValue > 1){      
+    filterValue = .99;
+  }
+  else if (filterValue <= 0){
+    filterValue = 0;
+  }
+  
+  smoothedValue = (sensor_reading * (1 - filterValue)) + (smoothedValue  *  filterValue);
+  return (int)smoothedValue;
+}
